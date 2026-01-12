@@ -1,0 +1,365 @@
+<!-- templates/landing.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<!-- Hero Section -->
+<div class="container-fluid bg-light py-5">
+    <div class="row align-items-center text-center text-lg-start">
+        <div class="col-lg-6 px-5">
+            <h1 class="display-4 fw-bold text-primary">Achieve Your Banking Dreams</h1>
+            <p class="lead text-dark mt-3">Join our expert-led coaching programs to crack competitive exams with confidence.</p>
+            <div class="mt-4">
+                <a href="{% url 'signup' %}" class="btn btn-primary btn-lg me-2">Get Started</a>
+                <a href="#courses" class="btn btn-outline-primary btn-lg">Explore Courses</a>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-4 mt-lg-0">
+            <img src="{% static 'images/bankc.png' %}" class="img-fluid rounded shadow" alt="Bank Coaching">
+        </div>
+    </div>
+</div>
+
+<!-- Stats Counter Section -->
+<div class="container py-5">
+    <div class="row text-center">
+        <div class="col-6 col-md-3 mb-4">
+            <div class="p-3 bg-white rounded shadow-sm">
+                <h2 class="display-5 fw-bold text-primary counter">15+</h2>
+                <p class="text-muted mb-0">Years Experience</p>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+            <div class="p-3 bg-white rounded shadow-sm">
+                <h2 class="display-5 fw-bold text-primary counter">50+</h2>
+                <p class="text-muted mb-0">Expert Faculties</p>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+            <div class="p-3 bg-white rounded shadow-sm">
+                <h2 class="display-5 fw-bold text-primary counter">10,000+</h2>
+                <p class="text-muted mb-0">Students Placed</p>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+            <div class="p-3 bg-white rounded shadow-sm">
+                <h2 class="display-5 fw-bold text-primary counter">95%</h2>
+                <p class="text-muted mb-0">Success Rate</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Why Choose Us Section -->
+<div class="container py-5 text-center">
+    <h2 class="fw-bold mb-2">Why Choose Us?</h2>
+    <p class="text-muted mb-5">We prepare you for success with our comprehensive approach</p>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100 border-0 rounded-3 hover-card">
+                <div class="card-body p-4">
+                    <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
+                        <i class="fas fa-user-tie fa-2x p-3"></i>
+                    </div>
+                    <h5 class="card-title text-primary">Expert Faculty</h5>
+                    <p class="card-text">Learn from experienced professionals with proven success in banking exams. Our teachers have worked in top banking positions.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100 border-0 rounded-3 hover-card">
+                <div class="card-body p-4">
+                    <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
+                        <i class="fas fa-file-alt fa-2x p-3"></i>
+                    </div>
+                    <h5 class="card-title text-primary">Mock Tests</h5>
+                    <p class="card-text">Regular mock tests to build confidence and track your performance. Get detailed analysis and personalized feedback.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100 border-0 rounded-3 hover-card">
+                <div class="card-body p-4">
+                    <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
+                        <i class="fas fa-handshake fa-2x p-3"></i>
+                    </div>
+                    <h5 class="card-title text-primary">Placement Assistance</h5>
+                    <p class="card-text">Guidance for interviews and placements with our strong alumni network. We help you transition from student to professional.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popular Courses Section -->
+<div id="courses" class="container-fluid bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Popular Courses</h2>
+            <p class="text-muted">Comprehensive coaching programs for various banking exams</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card border-0 shadow h-100">
+                    <!-- <img src="#" class="card-img-top" alt="SBI PO Course" > -->
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-primary">Bestseller</span>
+                            <span class="text-primary fw-bold">₹12,999</span>
+                        </div>
+                        <h5 class="card-title">SBI PO Preparation</h5>
+                        <p class="card-text">Complete preparation for State Bank of India Probationary Officer exam.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div>
+                                <i class="far fa-clock text-muted"></i>
+                                <small class="text-muted ms-1">6 months</small>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card border-0 shadow h-100">
+                    <img src="">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-success">Most Popular</span>
+                            <span class="text-primary fw-bold">₹11,499</span>
+                        </div>
+                        <h5 class="card-title">IBPS PO Preparation</h5>
+                        <p class="card-text">Comprehensive coaching for Institute of Banking Personnel Selection PO exam.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div>
+                                <i class="far fa-clock text-muted"></i>
+                                <small class="text-muted ms-1">5 months</small>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card border-0 shadow h-100">
+                    <img src="">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-warning text-dark">New Batch</span>
+                            <span class="text-primary fw-bold">₹10,999</span>
+                        </div>
+                        <h5 class="card-title">RBI Assistant Course</h5>
+                        <p class="card-text">Specialized training for Reserve Bank of India Assistant examination.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div>
+                                <i class="far fa-clock text-muted"></i>
+                                <small class="text-muted ms-1">4 months</small>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="#" class="btn btn-primary">View All Courses</a>
+        </div>
+    </div>
+</div>
+
+<!-- Testimonials Section -->
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Success Stories</h2>
+        <p class="text-muted">Hear what our successful students have to say</p>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-3">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="">
+                        <div class="ms-3">
+                            <h5 class="mb-0">Priya Sharma</h5>
+                            <p class="text-muted mb-0">SBI PO, 2024 Batch</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                    <p class="card-text">"The structured approach and personalized attention helped me crack the SBI PO exam in my first attempt. The mock tests were extremely helpful."</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-3">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="">
+                        <div class="ms-3">
+                            <h5 class="mb-0">Rajesh Kumar</h5>
+                            <p class="text-muted mb-0">IBPS PO, 2023 Batch</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                    <p class="card-text">"The faculty's expertise and the quality of study materials are exceptional. They don't just teach for exams but prepare you for a banking career."</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-3">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="">
+                        <div class="ms-3">
+                            <h5 class="mb-0">Ananya Patel</h5>
+                            <p class="text-muted mb-0">RBI Assistant, 2024 Batch</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star-half-alt text-warning"></i>
+                    </div>
+                    <p class="card-text">"The interview preparation was outstanding. The mock interviews and feedback sessions gave me the confidence to excel in the final selection round."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mt-4">
+        <a href="#" class="btn btn-outline-primary">Read More Success Stories</a>
+    </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="container-fluid bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Frequently Asked Questions</h2>
+            <p class="text-muted">Find answers to common questions about our coaching programs</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item border-0 shadow-sm mb-3">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                How are the classes conducted?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We offer both offline classroom programs and online live classes. Our online platform provides interactive sessions, recorded lectures, and study materials accessible 24/7. Students can choose the mode that best suits their learning style and schedule.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 shadow-sm mb-3">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                What is the duration of your coaching programs?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Our program durations vary based on the exam and course selected. Most comprehensive courses range from 3-6 months. We also offer crash courses and weekend batches for working professionals. Each program is designed to cover the complete syllabus with adequate time for revision and practice tests.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 shadow-sm mb-3">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Do you offer study materials and practice tests?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, all our courses include comprehensive study materials prepared by our expert faculty. We provide topic-wise notes, previous year question papers with solutions, and multiple mock tests with detailed analysis. Our online platform also has a large question bank for additional practice.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 shadow-sm mb-3">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                What is your success rate?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We have consistently maintained a success rate of over 95% across various banking exams. In the last batch, 92% of our students cleared the preliminary exams, and 87% cleared the mains. We've had multiple students securing top ranks in national-level banking exams over the years.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action Section -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card bg-primary text-white shadow border-0">
+                <div class="card-body p-5 text-center">
+                    <h2 class="fw-bold mb-3">Ready to Start Your Banking Career?</h2>
+                    <p class="lead mb-4">Join thousands of successful students who have transformed their careers with our expert coaching.</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{% url 'signup' %}" class="btn btn-light btn-lg">Enroll Now</a>
+                        <a href="#" class="btn btn-outline-light btn-lg">Schedule Demo Class</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional CSS for new elements -->
+<style>
+    .feature-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 70px;
+        height: 70px;
+    }
+    
+    .hover-card {
+        transition: transform 0.3s ease;
+    }
+    
+    .hover-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .counter {
+        font-size: 2.5rem;
+    }
+    
+  
+</style>
+
+{% endblock %}

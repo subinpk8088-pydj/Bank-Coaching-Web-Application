@@ -1,0 +1,159 @@
+{% extends 'user_base.html' %}
+{% block content %}
+<!-- Main Content -->
+<div class="content-wrapper p-4">
+    <div class="container-fluid">
+        <h4 class="mb-3">Dashboard</h4>
+
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card">
+                    <div class="card-body text-center">
+                        <div class="card-icon bg-primary text-white mx-auto">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h5>Courses</h5>
+                        <h2>4</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card">
+                    <div class="card-body text-center">
+                        <div class="card-icon bg-success text-white mx-auto">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h5>Tests</h5>
+                        <h2>12</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card">
+                    <div class="card-body text-center">
+                        <div class="card-icon bg-warning text-white mx-auto">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h5>Hours</h5>
+                        <h2>87</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card">
+                    <div class="card-body text-center">
+                        <div class="card-icon bg-info text-white mx-auto">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h5>Rank</h5>
+                        <h2>#24</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Content -->
+        <div class="row mb-4">
+            <!-- Progress Card -->
+            <div class="col-lg-8 mb-3">
+                <div class="card dashboard-card">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Your Progress</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Banking Awareness</span>
+                                <span>78%</span>
+                            </div>
+                            <div class="progress progress-thin">
+                                <div class="progress-bar bg-success" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Quantitative Aptitude</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="progress progress-thin">
+                                <div class="progress-bar bg-info" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Reasoning Ability</span>
+                                <span>82%</span>
+                            </div>
+                            <div class="progress progress-thin">
+                                <div class="progress-bar bg-primary" style="width: 82%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- User Profile Card -->
+            <div class="col-lg-4 mb-3">
+                <div class="card dashboard-card">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <img src="" alt="User" class="rounded-circle mb-2" style="width: 70px; height: 70px;">
+                            <h5 class="mb-0">{{ user.username }}</h5>
+                            <p class="text-muted">Premium Member</p>
+                        </div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="mb-2">
+                                <input type="email" class="form-control form-control-sm" value="{{ user.email }}" readonly>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm w-100">Update Profile</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Tests -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card dashboard-card">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Upcoming Tests</h5>
+                        <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <div>
+                                    <h6 class="mb-1">Banking Awareness Mock Test</h6>
+                                    <small class="text-muted">April 19, 2025 • 10:00 AM</small>
+                                </div>
+                                <span class="badge bg-warning rounded-pill">Tomorrow</span>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <div>
+                                    <h6 class="mb-1">Full Mock Test - Series 7</h6>
+                                    <small class="text-muted">April 23, 2025 • 9:00 AM</small>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Prepare</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Toggle sidebar on mobile
+    document.getElementById('sidebarToggle').addEventListener('click', function() {
+        document.body.classList.toggle('sidebar-open');
+    });
+</script>
+{% endblock %}

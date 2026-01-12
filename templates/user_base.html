@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Coaching Center</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b5998;
+            --secondary-color: #f8f9fa;
+            --sidebar-width: 250px;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fb;
+            overflow-x: hidden;
+        }
+        
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #2c3e50;
+            color: white;
+            padding-top: 56px;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 12px 20px;
+            border-left: 4px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-left: 4px solid #3498db;
+        }
+        
+        .sidebar .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .content-wrapper {
+            margin-left: var(--sidebar-width);
+            padding-top: 56px;
+            min-height: 100vh;
+            transition: all 0.3s;
+            padding: 70px 20px 20px;
+        }
+        
+        .topbar {
+            background-color: white;
+            height: 56px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: var(--sidebar-width);
+            z-index: 998;
+            transition: all 0.3s;
+        }
+        
+        .dashboard-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .progress-thin {
+            height: 6px;
+        }
+        
+        .badge-notification {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 0.6rem;
+        }
+        
+        .user-profile-pic {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #e9ecef;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                padding-top: 56px;
+            }
+            
+            .content-wrapper, .topbar {
+                margin-left: 0;
+                left: 0;
+                width: 100%;
+            }
+            
+            body.sidebar-open .sidebar {
+                transform: translateX(0);
+            }
+            
+            body.sidebar-open .overlay {
+                display: block;
+            }
+        }
+
+        .sidebar-toggle {
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            color: #555;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            display: none;
+        }
+
+        /* Dashboard content styles */
+        .main-content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay for mobile sidebar -->
+    <div class="overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h5 class="m-0">Bank Coaching Center</h5>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-book"></i> My Courses
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-clipboard-list"></i> Test Series
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-question-circle"></i> Practice Questions
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-chart-line"></i> Performance
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-calendar-alt"></i> Schedule
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-file-alt"></i> Study Materials
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-comment-alt"></i> Discussions
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-bell"></i> Notifications
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-user-circle"></i> Profile
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger" href="{% url 'logout' %}">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Top Navigation -->
+    <div class="topbar d-flex justify-content-between align-items-center px-4">
+        <div>
+            <button class="btn sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars" id="sidebarIcon"></i>
+            </button>
+        </div>
+        <div class="search-bar d-none d-md-block">
+            <div class="input-group">
+                <input type="text" class="form-control form-control-sm" placeholder="Search...">
+                <button class="btn btn-outline-secondary btn-sm" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="position-relative me-3">
+                <a href="#" class="text-muted">
+                    <i class="fas fa-bell fs-5"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        3
+                    </span>
+                </a>
+            </div>
+            <div class="position-relative me-3">
+                <a href="#" class="text-muted">
+                    <i class="fas fa-envelope fs-5"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                        5
+                    </span>
+                </a>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{ user.profile_image.url|default:'/media/profile_images/default.png' }}" 
+                         alt="Profile" 
+                         class="rounded-circle me-2" 
+                         width="35" height="35" 
+                         style="object-fit: cover;">
+                    <span class="d-none d-md-inline">{{ user.username }}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <img src="{{ user.profile_image.url|default:'/media/profile_images/default.png' }}" 
+                                 class="rounded-circle me-2" 
+                                 width="30" height="30" 
+                                 alt="Profile" 
+                                 style="object-fit: cover;">
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Account Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="row mb-4">
+                    <div class="col">
+                        <h2>Dashboard</h2>
+                        <p class="text-muted">Welcome back! Here's your learning progress.</p>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card dashboard-card h-100">
+                            <div class="card-body text-center">
+                                <div class="card-icon bg-primary text-white mx-auto">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <h5>Active Courses</h5>
+                                <h2 class="mt-3 mb-4">4</h2>
+                                <div class="progress progress-thin">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-2 mb-0 text-muted">65% Completed</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card dashboard-card h-100">
+                            <div class="card-body text-center">
+                                <div class="card-icon bg-success text-white mx-auto">
+                                    <i class="fas fa-clipboard-check"></i>
+                                </div>
+                                <h5>Tests Taken</h5>
+                                <h2 class="mt-3 mb-4">12</h2>
+                                <div class="progress progress-thin">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-2 mb-0 text-muted">80% Success Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card dashboard-card h-100">
+                            <div class="card-body text-center">
+                                <div class="card-icon bg-warning text-white mx-auto">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h5>Study Hours</h5>
+                                <h2 class="mt-3 mb-4">42</h2>
+                                <div class="progress progress-thin">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-2 mb-0 text-muted">This Month</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card dashboard-card h-100">
+                            <div class="card-body text-center">
+                                <div class="card-icon bg-info text-white mx-auto">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <h5>Achievements</h5>
+                                <h2 class="mt-3 mb-4">8</h2>
+                                <div class="progress progress-thin">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-2 mb-0 text-muted">40% of Total</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarIcon = document.getElementById('sidebarIcon');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const body = document.body;
+
+            // Function to check window width and toggle sidebar accordingly
+            function checkWidth() {
+                if (window.innerWidth <= 768) {
+                    body.classList.remove('sidebar-open');
+                } else {
+                    body.classList.add('sidebar-open');
+                }
+            }
+
+            // Initial check
+            checkWidth();
+
+            // Toggle sidebar on button click
+            sidebarToggle.addEventListener('click', function() {
+                body.classList.toggle('sidebar-open');
+                
+                // Toggle icon between bars and times
+                if (body.classList.contains('sidebar-open')) {
+                    sidebarIcon.classList.remove('fa-bars');
+                    sidebarIcon.classList.add('fa-times');
+                } else {
+                    sidebarIcon.classList.remove('fa-times');
+                    sidebarIcon.classList.add('fa-bars');
+                }
+            });
+
+            // Close sidebar when overlay is clicked (mobile)
+            sidebarOverlay.addEventListener('click', function() {
+                body.classList.remove('sidebar-open');
+                sidebarIcon.classList.remove('fa-times');
+                sidebarIcon.classList.add('fa-bars');
+            });
+
+            // Update on window resize
+            window.addEventListener('resize', checkWidth);
+        });
+    </script>
+</body>
+</html>
