@@ -2,324 +2,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Bank Coaching Centre</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        
-        .content-wrapper {
-            flex: 1;
-        }
-        
-        /* Navbar Styles */
-        .navbar {
-            background: linear-gradient(to right, #1A5276, #2E86C1);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 12px 0;
-        }
-        
-        .navbar-brand {
-            color: white !important;
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: 0.5px;
-        }
-        
-        .navbar-brand:hover {
-            color: #F8C471 !important;
-        }
-        
-        .nav-link {
-            color: white !important;
-            font-weight: 500;
-            margin: 0 10px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: #F8C471;
-            bottom: 0;
-            left: 0;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: #F8C471 !important;
-        }
-        
-        .nav-link:hover:after {
-            width: 100%;
-        }
-        
-        .navbar-toggler {
-            border-color: rgba(255,255,255,0.5);
-        }
-        
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-        
-        .btn-login {
-            background-color: transparent;
-            border: 2px solid white;
-            color: white;
-            border-radius: 50px;
-            padding: 0.375rem 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-login:hover {
-            background-color: white;
-            color: #1A5276;
-        }
-        
-        .btn-signup {
-            background-color: #F8C471;
-            border: 2px solid #F8C471;
-            color: #1A5276;
-            border-radius: 50px;
-            padding: 0.375rem 1.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-signup:hover {
-            background-color: #F8C471;
-            border: 2px solid #F8C471;
-            color: #1A5276;
-            border-radius: 50px;
-            padding: 0.375rem 1.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        /* Footer Styles */
-        footer {
-            background: linear-gradient(to right, #1A5276, #2E86C1);
-            color: white;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-heading {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-heading:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background: #F8C471;
-        }
-        
-        .footer-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: #F8C471;
-            padding-left: 5px;
-        }
-        
-        .social-icons a {
-            display: inline-block;
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 36px;
-            color: white;
-            margin-right: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            background: #F8C471;
-            color: #1A5276;
-            transform: translateY(-3px);
-        }
-        
-        .contact-info i {
-            width: 20px;
-            margin-right: 10px;
-            color: #F8C471;
-        }
-        
-        .newsletter-form .form-control {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            border-radius: 50px 0 0 50px;
-        }
-        
-        .newsletter-form .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .newsletter-form .btn {
-            background: #F8C471;
-            color: #1A5276;
-            font-weight: 600;
-            border-radius: 0 50px 50px 0;
-            border: none;
-            transition: all 0.3s ease;
-        }
-        
-        .newsletter-form .btn:hover {
-            background: #F39C12;
-            color: white;
-        }
-        
-        .copyright {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            margin-top: 30px;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-        
-        .copyright a {
-            color: #F8C471;
-            text-decoration: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>BankCoach Pro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--surface:#161b22;--card:#1c2230;--border:#2a3244;
+  --gold:#f0b429;--gold2:#ffda85;--teal:#00d4aa;--blue:#4d9de0;
+  --text:#e8edf5;--muted:#6b7a99;
+}
+*{box-sizing:border-box}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;min-height:100vh;margin:0}
+.content-wrapper{flex:1}
+
+/* NAV */
+.navbar{background:rgba(13,17,23,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 0;position:sticky;top:0;z-index:1000}
+.navbar-brand{font-weight:800;font-size:1.25rem;color:var(--text)!important;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.brand-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),#e67e22);border-radius:8px;display:grid;place-items:center;color:#000;font-weight:800;font-size:.85rem;flex-shrink:0}
+.nav-link{color:var(--muted)!important;font-size:.85rem;font-weight:500;padding:6px 14px!important;border-radius:6px;transition:.2s}
+.nav-link:hover{color:var(--text)!important;background:rgba(255,255,255,.06)}
+.btn-nav-login{border:1px solid var(--border);color:var(--text)!important;border-radius:8px;padding:7px 18px!important;font-size:.82rem;font-weight:600;transition:.2s;background:transparent}
+.btn-nav-login:hover{border-color:var(--gold);color:var(--gold)!important}
+.btn-nav-signup{background:var(--gold);color:#000!important;border-radius:8px;padding:7px 18px!important;font-size:.82rem;font-weight:700;transition:.2s;border:none}
+.btn-nav-signup:hover{background:var(--gold2)}
+.navbar-toggler{border:1px solid var(--border);padding:6px 10px}
+.navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28232,237,245,.8%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")}
+
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:56px 0 0}
+.footer-heading{font-size:.88rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--gold);display:inline-block}
+.footer-links{list-style:none;padding:0;margin:0}
+.footer-links li{margin-bottom:8px}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:.82rem;transition:.2s;display:flex;align-items:center;gap:8px}
+.footer-links a:hover{color:var(--gold);padding-left:4px}
+.footer-links a i{font-size:.6rem;color:var(--gold)}
+.footer-desc{color:var(--muted);font-size:.82rem;line-height:1.7}
+.social-icons a{display:inline-grid;place-items:center;width:34px;height:34px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--muted);margin-right:8px;font-size:.8rem;transition:.2s;text-decoration:none}
+.social-icons a:hover{background:rgba(240,180,41,.12);border-color:var(--gold);color:var(--gold)}
+.contact-info p{color:var(--muted);font-size:.82rem;margin-bottom:10px;display:flex;align-items:flex-start;gap:10px}
+.contact-info i{color:var(--gold);margin-top:2px;width:14px;flex-shrink:0}
+.newsletter-form input{background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:8px 0 0 8px;padding:9px 14px;font-size:.82rem;font-family:inherit;flex:1;outline:none}
+.newsletter-form input::placeholder{color:var(--muted)}
+.newsletter-form input:focus{border-color:var(--gold)}
+.newsletter-form button{background:var(--gold);color:#000;border:none;border-radius:0 8px 8px 0;padding:9px 16px;font-size:.82rem;font-weight:700;cursor:pointer;transition:.2s}
+.newsletter-form button:hover{background:var(--gold2)}
+.footer-bottom{border-top:1px solid var(--border);padding:18px 0;margin-top:40px;text-align:center;color:var(--muted);font-size:.75rem}
+.footer-bottom a{color:var(--gold);text-decoration:none}
+</style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'landing_page' %}">
-                <i class="fas fa-university me-2"></i>Bank Coaching Centre
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Courses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                    <li class="nav-item ms-2">
-                        <a class="btn btn-login" href="{% url 'signin' %}">Sign In</a>
-                    </li>
-                    <li class="nav-item ms-2">
-                        <a class="btn btn-login" href="{% url 'signup' %}">Sign Up</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Content Wrapper -->
-    <div class="content-wrapper">
-        <div class="container my-5">
-            {% block content %}
-            {% endblock %}
-        </div>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'landing_page' %}">
+      <div class="brand-icon">₹</div>BankCoach Pro
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav align-items-center gap-1 me-3">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <a class="btn-nav-login nav-link" href="{% url 'signin' %}">Sign In</a>
+        <a class="btn-nav-signup nav-link" href="{% url 'signup' %}">Sign Up</a>
+      </div>
     </div>
-    
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row g-4">
-                <!-- About Column -->
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="footer-heading">About Us</h5>
-                    <p>Bank Coaching Centre provides specialized training for banking exams and helps students achieve their career goals in the banking sector.</p>
-                    <div class="social-icons mt-3">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Quick Links Column -->
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="footer-heading">Quick Links</h5>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Home</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Courses</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Study Materials</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Mock Tests</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Success Stories</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> FAQs</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Contact Info Column -->
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="footer-heading">Contact Info</h5>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> 123 Banking Street, Financial District, City</p>
-                        <p><i class="fas fa-phone-alt"></i> +1 (555) 123-4567</p>
-                        <p><i class="fas fa-envelope"></i> info@bankcoaching.com</p>
-                        <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 6:00 PM</p>
-                    </div>
-                </div>
-                
-                <!-- Newsletter Column -->
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="footer-heading">Newsletter</h5>
-                    <p>Subscribe to our newsletter for updates on courses, exam alerts, and career opportunities.</p>
-                    <form class="newsletter-form mt-3">
-                        <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Your Email">
-                            <button class="btn" type="submit">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            
-            <!-- Copyright -->
-            <div class="copyright">
-                <p>© 2025 Bank Coaching Centre. All Rights Reserved | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            </div>
+  </div>
+</nav>
+
+<div class="content-wrapper">
+  {% block content %}{% endblock %}
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="d-flex align-items-center gap-2 mb-16" style="margin-bottom:16px">
+          <div class="brand-icon">₹</div>
+          <span style="font-weight:800;font-size:1rem">BankCoach Pro</span>
         </div>
-    </footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <p class="footer-desc">Specialized training for India's top banking exams. Trusted by 10,000+ successful candidates since 2009.</p>
+        <div class="social-icons mt-3">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fas fa-angle-right"></i>Home</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i>Courses</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i>Study Materials</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i>Mock Tests</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i>Success Stories</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i>FAQs</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-heading">Contact</div>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i>123 Banking Street, Financial District, Mumbai</p>
+          <p><i class="fas fa-phone-alt"></i>+91 98765 43210</p>
+          <p><i class="fas fa-envelope"></i>info@bankcoachpro.com</p>
+          <p><i class="fas fa-clock"></i>Mon–Sat: 9 AM – 6 PM</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-heading">Newsletter</div>
+        <p class="footer-desc mb-3">Get exam alerts, study tips, and batch updates straight to your inbox.</p>
+        <div class="newsletter-form d-flex">
+          <input type="email" placeholder="Your email address">
+          <button type="submit">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="mb-0">© 2025 BankCoach Pro. All Rights Reserved &nbsp;|&nbsp; <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+{% block extra_js %}{% endblock %}
 </body>
 </html>

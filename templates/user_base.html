@@ -1,426 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Coaching Center</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #3b5998;
-            --secondary-color: #f8f9fa;
-            --sidebar-width: 250px;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f7fb;
-            overflow-x: hidden;
-        }
-        
-        .sidebar {
-            width: var(--sidebar-width);
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #2c3e50;
-            color: white;
-            padding-top: 56px;
-            transition: all 0.3s;
-            z-index: 999;
-        }
-        
-        .sidebar .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            padding: 12px 20px;
-            border-left: 4px solid transparent;
-            transition: all 0.2s;
-        }
-        
-        .sidebar .nav-link:hover, .sidebar .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-left: 4px solid #3498db;
-        }
-        
-        .sidebar .nav-link i {
-            margin-right: 10px;
-            width: 20px;
-            text-align: center;
-        }
-        
-        .sidebar-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .content-wrapper {
-            margin-left: var(--sidebar-width);
-            padding-top: 56px;
-            min-height: 100vh;
-            transition: all 0.3s;
-            padding: 70px 20px 20px;
-        }
-        
-        .topbar {
-            background-color: white;
-            height: 56px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: var(--sidebar-width);
-            z-index: 998;
-            transition: all 0.3s;
-        }
-        
-        .dashboard-card {
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s;
-        }
-        
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        
-        .progress-thin {
-            height: 6px;
-        }
-        
-        .badge-notification {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            font-size: 0.6rem;
-        }
-        
-        .user-profile-pic {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            object-fit: cover;
-            background-color: #e9ecef;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bank Coaching Center</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#0d1117;--surface:#161b22;--card:#1c2230;--border:#2a3244;
+  --gold:#f0b429;--gold2:#ffda85;--teal:#00d4aa;--rose:#ff6b6b;
+  --blue:#4d9de0;--text:#e8edf5;--muted:#6b7a99;--sidebar:260px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                padding-top: 56px;
-            }
-            
-            .content-wrapper, .topbar {
-                margin-left: 0;
-                left: 0;
-                width: 100%;
-            }
-            
-            body.sidebar-open .sidebar {
-                transform: translateX(0);
-            }
-            
-            body.sidebar-open .overlay {
-                display: block;
-            }
-        }
+/* SIDEBAR */
+.sidebar{width:var(--sidebar);height:100vh;position:fixed;top:0;left:0;background:var(--surface);border-right:1px solid var(--border);z-index:999;display:flex;flex-direction:column;transition:.3s}
+.sidebar-logo{padding:22px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),#e67e22);border-radius:10px;display:grid;place-items:center;font-size:18px;color:#000;font-weight:700;flex-shrink:0}
+.logo-text{font-size:.85rem;font-weight:700;letter-spacing:.04em;line-height:1.3}
+.logo-text span{display:block;color:var(--muted);font-size:.65rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase}
+.nav-section{padding:18px 12px 6px;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
+.sidebar nav{flex:1;overflow-y:auto;padding:8px 12px}
+.sidebar nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;transition:.2s;margin-bottom:2px}
+.sidebar nav a:hover{background:rgba(240,180,41,.07);color:var(--text)}
+.sidebar nav a.active{background:rgba(240,180,41,.12);color:var(--gold);border-left:3px solid var(--gold)}
+.sidebar nav a i{width:18px;text-align:center;font-size:.85rem}
+.sidebar nav a.danger{color:#ff6b6b}
+.sidebar nav a.danger:hover{background:rgba(255,107,107,.08)}
+.sidebar-footer{padding:16px 12px;border-top:1px solid var(--border)}
 
-        .sidebar-toggle {
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 0.5rem;
-            color: #555;
-        }
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:var(--sidebar);right:0;height:58px;background:var(--surface);border-bottom:1px solid var(--border);z-index:998;display:flex;align-items:center;justify-content:space-between;padding:0 24px;transition:.3s}
+.topbar-left{display:flex;align-items:center;gap:12px}
+.topbar-title{font-size:.95rem;font-weight:700;color:var(--text)}
+.topbar-sub{font-size:.72rem;color:var(--muted)}
+.search-wrap{position:relative}
+.search-wrap input{background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 14px 7px 36px;font-size:.8rem;width:220px;font-family:inherit;outline:none;transition:.2s}
+.search-wrap input:focus{border-color:var(--gold);width:260px}
+.search-wrap i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.75rem}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.icon-btn{position:relative;background:none;border:none;color:var(--muted);font-size:1rem;cursor:pointer;padding:6px;transition:.2s}
+.icon-btn:hover{color:var(--text)}
+.badge-dot{position:absolute;top:2px;right:2px;width:8px;height:8px;background:var(--rose);border-radius:50%;border:2px solid var(--surface)}
+.avatar{width:34px;height:34px;border-radius:50%;border:2px solid var(--gold);object-fit:cover;cursor:pointer}
+.dropdown-menu{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px}
+.dropdown-item{color:var(--muted);font-size:.82rem;border-radius:6px;padding:8px 12px;transition:.15s}
+.dropdown-item:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.dropdown-divider{border-color:var(--border)}
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 998;
-            display: none;
-        }
+/* CONTENT */
+.content{margin-left:var(--sidebar);padding-top:58px;min-height:100vh}
+.main{padding:28px 28px}
+.page-header{margin-bottom:28px}
+.page-header h2{font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+.page-header p{color:var(--muted);font-size:.82rem;margin-top:4px}
+.hi{color:var(--gold)}
 
-        /* Dashboard content styles */
-        .main-content {
-            padding: 20px;
-        }
-    </style>
+/* STAT CARDS */
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;transition:.2s;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.stat-card.c1::before{background:linear-gradient(90deg,var(--gold),#e67e22)}
+.stat-card.c2::before{background:linear-gradient(90deg,var(--teal),#00b4d8)}
+.stat-card.c3::before{background:linear-gradient(90deg,var(--rose),#ff9a3c)}
+.stat-card.c4::before{background:linear-gradient(90deg,var(--blue),#7b2ff7)}
+.stat-card:hover{transform:translateY(-3px);border-color:rgba(240,180,41,.25)}
+.stat-icon{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;font-size:1.1rem;margin-bottom:14px}
+.stat-card.c1 .stat-icon{background:rgba(240,180,41,.12);color:var(--gold)}
+.stat-card.c2 .stat-icon{background:rgba(0,212,170,.1);color:var(--teal)}
+.stat-card.c3 .stat-icon{background:rgba(255,107,107,.1);color:var(--rose)}
+.stat-card.c4 .stat-icon{background:rgba(77,157,224,.1);color:var(--blue)}
+.stat-val{font-size:2rem;font-weight:700;letter-spacing:-.04em;line-height:1;font-family:'DM Mono',monospace}
+.stat-label{font-size:.78rem;color:var(--muted);margin-top:4px;font-weight:500}
+.stat-change{font-size:.72rem;margin-top:10px;font-weight:600}
+.stat-change.up{color:var(--teal)} .stat-change.down{color:var(--rose)}
+
+/* CHARTS */
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px}
+.chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.chart-title{font-size:.9rem;font-weight:700}
+.chart-sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.chart-badge{background:rgba(240,180,41,.12);color:var(--gold);font-size:.68rem;padding:3px 10px;border-radius:20px;font-weight:600;border:1px solid rgba(240,180,41,.2)}
+
+/* SUBJECT LEGEND */
+.legend-item{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted);margin-bottom:8px}
+.legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+
+/* UPCOMING TESTS */
+.test-row{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border)}
+.test-row:last-child{border-bottom:none;padding-bottom:0}
+.test-icon{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;font-size:.95rem;flex-shrink:0}
+.test-name{font-size:.83rem;font-weight:600}
+.test-meta{font-size:.72rem;color:var(--muted);margin-top:2px}
+.pill{font-size:.65rem;padding:3px 9px;border-radius:20px;font-weight:600;white-space:nowrap}
+.pill-warn{background:rgba(240,180,41,.12);color:var(--gold)}
+.pill-ok{background:rgba(0,212,170,.1);color:var(--teal)}
+.pill-hot{background:rgba(255,107,107,.1);color:var(--rose)}
+
+/* ACTIVITY */
+.act-item{display:flex;gap:12px;margin-bottom:16px}
+.act-line{display:flex;flex-direction:column;align-items:center}
+.act-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.act-connector{width:2px;flex:1;background:var(--border);margin:4px 0}
+.act-title{font-size:.82rem;font-weight:600}
+.act-time{font-size:.7rem;color:var(--muted);margin-top:2px}
+
+/* RANK BADGE */
+.rank-block{text-align:center;padding:18px 0}
+.rank-ring{width:90px;height:90px;border-radius:50%;border:3px solid var(--gold);display:grid;place-items:center;margin:0 auto 10px}
+.rank-num{font-size:1.6rem;font-weight:700;font-family:'DM Mono',monospace;color:var(--gold)}
+.rank-label{font-size:.72rem;color:var(--muted)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%)}
+  body.open .sidebar{transform:translateX(0)}
+  .content,.topbar{margin-left:0;left:0}
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:997;display:none}
+  body.open .overlay{display:block}
+  .main{padding:20px 16px}
+}
+</style>
 </head>
 <body>
-    <!-- Overlay for mobile sidebar -->
-    <div class="overlay" id="sidebarOverlay"></div>
+<div class="overlay" id="overlay"></div>
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h5 class="m-0">Bank Coaching Center</h5>
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">₹</div>
+    <div class="logo-text">BankCoach Pro<span>Exam Excellence</span></div>
+  </div>
+  <nav>
+    <div class="nav-section">Main</div>
+    <a href="#" class="active"><i class="fas fa-th-large"></i> Dashboard</a>
+    <a href="#"><i class="fas fa-book-open"></i> My Courses</a>
+    <a href="#"><i class="fas fa-clipboard-list"></i> Test Series</a>
+    <a href="#"><i class="fas fa-question-circle"></i> Practice</a>
+    <a href="#"><i class="fas fa-chart-line"></i> Performance</a>
+    <div class="nav-section">Resources</div>
+    <a href="#"><i class="fas fa-calendar-alt"></i> Schedule</a>
+    <a href="#"><i class="fas fa-file-alt"></i> Study Materials</a>
+    <a href="#"><i class="fas fa-comments"></i> Discussions</a>
+    <div class="nav-section">Account</div>
+    <a href="#"><i class="fas fa-user-circle"></i> Profile</a>
+    <a href="#"><i class="fas fa-cog"></i> Settings</a>
+    <a href="{% url 'logout' %}" class="danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </nav>
+</aside>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <button class="icon-btn" id="togBtn"><i class="fas fa-bars"></i></button>
+    <div>
+      <div class="topbar-title">Dashboard</div>
+      <div class="topbar-sub">Tuesday, 12 May 2026</div>
+    </div>
+  </div>
+  <div class="search-wrap d-none d-md-block">
+    <i class="fas fa-search"></i>
+    <input type="text" placeholder="Search topics, tests…">
+  </div>
+  <div class="topbar-right">
+    <button class="icon-btn"><i class="fas fa-bell"></i><span class="badge-dot"></span></button>
+    <button class="icon-btn"><i class="fas fa-envelope"></i></button>
+    <div class="dropdown">
+      <img src="/media/profile_images/default.png" alt="Profile" class="avatar dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" onerror="this.src='https://ui-avatars.com/api/?name=User&background=f0b429&color=000&size=34'">
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="content">
+<div class="main">
+  <div class="page-header">
+    <h2>Good morning, <span class="hi">{{ user.username }}</span> 👋</h2>
+    <p>Here's your exam prep overview for today.</p>
+  </div>
+
+  <!-- STAT CARDS -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-lg-3"><div class="stat-card c1">
+      <div class="stat-icon"><i class="fas fa-book"></i></div>
+      <div class="stat-val">4</div>
+      <div class="stat-label">Active Courses</div>
+      <div class="stat-change up"><i class="fas fa-arrow-up me-1"></i>65% Completed</div>
+    </div></div>
+    <div class="col-6 col-lg-3"><div class="stat-card c2">
+      <div class="stat-icon"><i class="fas fa-clipboard-check"></i></div>
+      <div class="stat-val">12</div>
+      <div class="stat-label">Tests Taken</div>
+      <div class="stat-change up"><i class="fas fa-arrow-up me-1"></i>80% Success Rate</div>
+    </div></div>
+    <div class="col-6 col-lg-3"><div class="stat-card c3">
+      <div class="stat-icon"><i class="fas fa-clock"></i></div>
+      <div class="stat-val">42h</div>
+      <div class="stat-label">Study Hours</div>
+      <div class="stat-change up"><i class="fas fa-arrow-up me-1"></i>+6h this week</div>
+    </div></div>
+    <div class="col-6 col-lg-3"><div class="stat-card c4">
+      <div class="stat-icon"><i class="fas fa-medal"></i></div>
+      <div class="stat-val">8</div>
+      <div class="stat-label">Achievements</div>
+      <div class="stat-change up"><i class="fas fa-arrow-up me-1"></i>40% of total</div>
+    </div></div>
+  </div>
+
+  <!-- CHARTS ROW -->
+  <div class="row g-3 mb-4">
+    <!-- Line Chart -->
+    <div class="col-lg-8">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div><div class="chart-title">Score Trend</div><div class="chart-sub">Last 8 mock tests</div></div>
+          <span class="chart-badge">↑ Improving</span>
         </div>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">
-                    <i class="fas fa-tachometer-alt"></i> Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-book"></i> My Courses
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-clipboard-list"></i> Test Series
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-question-circle"></i> Practice Questions
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-chart-line"></i> Performance
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-calendar-alt"></i> Schedule
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-file-alt"></i> Study Materials
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-comment-alt"></i> Discussions
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-bell"></i> Notifications
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-user-circle"></i> Profile
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-cog"></i> Settings
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-danger" href="{% url 'logout' %}">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-            </li>
-        </ul>
+        <canvas id="lineChart" height="100"></canvas>
+      </div>
+    </div>
+    <!-- Donut -->
+    <div class="col-lg-4">
+      <div class="chart-card h-100">
+        <div class="chart-header">
+          <div><div class="chart-title">Subject Split</div><div class="chart-sub">Study time %</div></div>
+        </div>
+        <canvas id="donutChart" height="180"></canvas>
+        <div class="mt-3">
+          <div class="legend-item"><span class="legend-dot" style="background:#f0b429"></span>Quantitative</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#00d4aa"></span>Reasoning</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#4d9de0"></span>English</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#ff6b6b"></span>GK / Banking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <div class="row g-3">
+    <!-- Upcoming Tests -->
+    <div class="col-lg-5">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div><div class="chart-title">Upcoming Tests</div><div class="chart-sub">Next 7 days</div></div>
+          <a href="#" style="font-size:.75rem;color:var(--gold);text-decoration:none">View all</a>
+        </div>
+        <div class="test-row">
+          <div class="test-icon" style="background:rgba(240,180,41,.1);color:var(--gold)"><i class="fas fa-pen-nib"></i></div>
+          <div class="flex-grow-1"><div class="test-name">IBPS PO — Full Mock</div><div class="test-meta">Tomorrow · 120 min · 200 Qs</div></div>
+          <span class="pill pill-warn">Tomorrow</span>
+        </div>
+        <div class="test-row">
+          <div class="test-icon" style="background:rgba(0,212,170,.1);color:var(--teal)"><i class="fas fa-calculator"></i></div>
+          <div class="flex-grow-1"><div class="test-name">Quant Sectional</div><div class="test-meta">Thu, 15 May · 40 min</div></div>
+          <span class="pill pill-ok">3 days</span>
+        </div>
+        <div class="test-row">
+          <div class="test-icon" style="background:rgba(255,107,107,.1);color:var(--rose)"><i class="fas fa-landmark"></i></div>
+          <div class="flex-grow-1"><div class="test-name">Banking GK Quiz</div><div class="test-meta">Fri, 16 May · 20 min</div></div>
+          <span class="pill pill-hot">4 days</span>
+        </div>
+        <div class="test-row">
+          <div class="test-icon" style="background:rgba(77,157,224,.1);color:var(--blue)"><i class="fas fa-spell-check"></i></div>
+          <div class="flex-grow-1"><div class="test-name">English Mini Test</div><div class="test-meta">Sat, 17 May · 30 min</div></div>
+          <span class="pill pill-ok">5 days</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Top Navigation -->
-    <div class="topbar d-flex justify-content-between align-items-center px-4">
-        <div>
-            <button class="btn sidebar-toggle" id="sidebarToggle">
-                <i class="fas fa-bars" id="sidebarIcon"></i>
-            </button>
+    <!-- Bar Chart: Subject Scores -->
+    <div class="col-lg-4">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div><div class="chart-title">Subject Scores</div><div class="chart-sub">Last mock test</div></div>
         </div>
-        <div class="search-bar d-none d-md-block">
-            <div class="input-group">
-                <input type="text" class="form-control form-control-sm" placeholder="Search...">
-                <button class="btn btn-outline-secondary btn-sm" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-        <div class="d-flex align-items-center">
-            <div class="position-relative me-3">
-                <a href="#" class="text-muted">
-                    <i class="fas fa-bell fs-5"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        3
-                    </span>
-                </a>
-            </div>
-            <div class="position-relative me-3">
-                <a href="#" class="text-muted">
-                    <i class="fas fa-envelope fs-5"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                        5
-                    </span>
-                </a>
-            </div>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ user.profile_image.url|default:'/media/profile_images/default.png' }}" 
-                         alt="Profile" 
-                         class="rounded-circle me-2" 
-                         width="35" height="35" 
-                         style="object-fit: cover;">
-                    <span class="d-none d-md-inline">{{ user.username }}</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <img src="{{ user.profile_image.url|default:'/media/profile_images/default.png' }}" 
-                                 class="rounded-circle me-2" 
-                                 width="30" height="30" 
-                                 alt="Profile" 
-                                 style="object-fit: cover;">
-                            <span>Profile</span>
-                        </a>
-                    </li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Account Settings</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
-                </ul>
-            </div>
-            
-        </div>
+        <canvas id="barChart" height="190"></canvas>
+      </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="content-wrapper">
-        <div class="main-content">
-            <div class="container-fluid">
-                <div class="row mb-4">
-                    <div class="col">
-                        <h2>Dashboard</h2>
-                        <p class="text-muted">Welcome back! Here's your learning progress.</p>
-                    </div>
-                </div>
-                
-                <div class="row g-4">
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card dashboard-card h-100">
-                            <div class="card-body text-center">
-                                <div class="card-icon bg-primary text-white mx-auto">
-                                    <i class="fas fa-book"></i>
-                                </div>
-                                <h5>Active Courses</h5>
-                                <h2 class="mt-3 mb-4">4</h2>
-                                <div class="progress progress-thin">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-2 mb-0 text-muted">65% Completed</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card dashboard-card h-100">
-                            <div class="card-body text-center">
-                                <div class="card-icon bg-success text-white mx-auto">
-                                    <i class="fas fa-clipboard-check"></i>
-                                </div>
-                                <h5>Tests Taken</h5>
-                                <h2 class="mt-3 mb-4">12</h2>
-                                <div class="progress progress-thin">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-2 mb-0 text-muted">80% Success Rate</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card dashboard-card h-100">
-                            <div class="card-body text-center">
-                                <div class="card-icon bg-warning text-white mx-auto">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <h5>Study Hours</h5>
-                                <h2 class="mt-3 mb-4">42</h2>
-                                <div class="progress progress-thin">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-2 mb-0 text-muted">This Month</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card dashboard-card h-100">
-                            <div class="card-body text-center">
-                                <div class="card-icon bg-info text-white mx-auto">
-                                    <i class="fas fa-medal"></i>
-                                </div>
-                                <h5>Achievements</h5>
-                                <h2 class="mt-3 mb-4">8</h2>
-                                <div class="progress progress-thin">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-2 mb-0 text-muted">40% of Total</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Rank & Activity -->
+    <div class="col-lg-3">
+      <div class="chart-card">
+        <div class="rank-block">
+          <div class="rank-ring"><div class="rank-num">#14</div></div>
+          <div style="font-weight:700;font-size:.88rem">Batch Rank</div>
+          <div class="rank-label" style="margin-top:4px">Top 8% · 186 students</div>
         </div>
+        <hr style="border-color:var(--border);margin:12px 0">
+        <div style="font-size:.8rem;font-weight:700;margin-bottom:12px">Recent Activity</div>
+        <div class="act-item">
+          <div class="act-line"><div class="act-dot" style="background:var(--gold)"></div><div class="act-connector"></div></div>
+          <div><div class="act-title">Completed Reasoning</div><div class="act-time">2 hours ago</div></div>
+        </div>
+        <div class="act-item">
+          <div class="act-line"><div class="act-dot" style="background:var(--teal)"></div><div class="act-connector"></div></div>
+          <div><div class="act-title">Scored 78/100 Mock</div><div class="act-time">Yesterday</div></div>
+        </div>
+        <div class="act-item" style="margin-bottom:0">
+          <div class="act-line"><div class="act-dot" style="background:var(--blue)"></div></div>
+          <div><div class="act-title">Joined English Batch</div><div class="act-time">2 days ago</div></div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const sidebarIcon = document.getElementById('sidebarIcon');
-            const sidebar = document.getElementById('sidebar');
-            const sidebarOverlay = document.getElementById('sidebarOverlay');
-            const body = document.body;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+// Sidebar toggle
+document.getElementById('togBtn').addEventListener('click',()=>{
+  document.body.classList.toggle('open');
+});
+document.getElementById('overlay').addEventListener('click',()=>{
+  document.body.classList.remove('open');
+});
 
-            // Function to check window width and toggle sidebar accordingly
-            function checkWidth() {
-                if (window.innerWidth <= 768) {
-                    body.classList.remove('sidebar-open');
-                } else {
-                    body.classList.add('sidebar-open');
-                }
-            }
+// Chart defaults
+Chart.defaults.color='#6b7a99';
+Chart.defaults.font.family="'Sora',sans-serif";
+Chart.defaults.font.size=11;
 
-            // Initial check
-            checkWidth();
+// Line Chart
+new Chart(document.getElementById('lineChart'),{
+  type:'line',
+  data:{
+    labels:['T1','T2','T3','T4','T5','T6','T7','T8'],
+    datasets:[{
+      label:'Score',data:[58,63,55,70,72,68,75,82],
+      borderColor:'#f0b429',backgroundColor:'rgba(240,180,41,.08)',
+      pointBackgroundColor:'#f0b429',pointRadius:5,pointHoverRadius:7,
+      borderWidth:2.5,tension:.4,fill:true
+    },{
+      label:'Avg Batch',data:[60,60,62,63,65,66,67,68],
+      borderColor:'#4d9de0',backgroundColor:'transparent',
+      pointRadius:3,borderWidth:1.5,tension:.4,borderDash:[5,3]
+    }]
+  },
+  options:{
+    plugins:{legend:{position:'top',labels:{usePointStyle:true,boxWidth:8,padding:16}}},
+    scales:{
+      x:{grid:{color:'rgba(255,255,255,.04)'}},
+      y:{grid:{color:'rgba(255,255,255,.04)'},min:40,max:100,ticks:{callback:v=>v+'%'}}
+    }
+  }
+});
 
-            // Toggle sidebar on button click
-            sidebarToggle.addEventListener('click', function() {
-                body.classList.toggle('sidebar-open');
-                
-                // Toggle icon between bars and times
-                if (body.classList.contains('sidebar-open')) {
-                    sidebarIcon.classList.remove('fa-bars');
-                    sidebarIcon.classList.add('fa-times');
-                } else {
-                    sidebarIcon.classList.remove('fa-times');
-                    sidebarIcon.classList.add('fa-bars');
-                }
-            });
+// Donut Chart
+new Chart(document.getElementById('donutChart'),{
+  type:'doughnut',
+  data:{
+    labels:['Quantitative','Reasoning','English','GK / Banking'],
+    datasets:[{
+      data:[30,28,22,20],
+      backgroundColor:['#f0b429','#00d4aa','#4d9de0','#ff6b6b'],
+      borderWidth:0,hoverOffset:6
+    }]
+  },
+  options:{
+    cutout:'72%',
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}%`}}}
+  }
+});
 
-            // Close sidebar when overlay is clicked (mobile)
-            sidebarOverlay.addEventListener('click', function() {
-                body.classList.remove('sidebar-open');
-                sidebarIcon.classList.remove('fa-times');
-                sidebarIcon.classList.add('fa-bars');
-            });
-
-            // Update on window resize
-            window.addEventListener('resize', checkWidth);
-        });
-    </script>
+// Bar Chart
+new Chart(document.getElementById('barChart'),{
+  type:'bar',
+  data:{
+    labels:['Quant','Reasoning','English','GK'],
+    datasets:[{
+      label:'Score',data:[82,75,68,79],
+      backgroundColor:['rgba(240,180,41,.8)','rgba(0,212,170,.8)','rgba(77,157,224,.8)','rgba(255,107,107,.8)'],
+      borderRadius:6,borderSkipped:false
+    }]
+  },
+  options:{
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{display:false}},
+      y:{grid:{color:'rgba(255,255,255,.04)'},min:0,max:100,ticks:{callback:v=>v+'%'}}
+    }
+  }
+});
+</script>
 </body>
 </html>
